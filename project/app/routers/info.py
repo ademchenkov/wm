@@ -2,10 +2,7 @@ from fastapi import APIRouter
 
 from ..config import get_settings
 
-router = APIRouter(
-	prefix="/info",
-	tags=["info"],
-)
+router = APIRouter()
 settings = get_settings()
 
 
