@@ -1,9 +1,9 @@
 from pydantic import BaseModel, Field, UUID4, confloat, constr
 from pydantic.fields import Optional
 
-from project.app.models.FixedAsset import FixedAsset
-from project.app.models.LongTermMaterial import LongTermMaterial
-from project.app.models.ShortTermMaterial import ShortTermMaterial
+from project.app.models.pydantic.FixedAsset import FixedAsset
+from project.app.models.pydantic.LongTermMaterial import LongTermMaterial
+from project.app.models.pydantic.ShortTermMaterial import ShortTermMaterial
 
 
 class Asset(BaseModel):
