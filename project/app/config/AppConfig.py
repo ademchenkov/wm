@@ -5,6 +5,9 @@ from pydantic import AnyUrl, BaseSettings
 
 log = logging.getLogger("uvicorn")
 
+# tortoise model ID prefixes
+ASSET_GROUP_PREFIX = "НМК"
+
 
 class Settings(BaseSettings):
 	app_name: str = "Warehouse Management"
