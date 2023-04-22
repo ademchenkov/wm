@@ -3,9 +3,9 @@ import os
 import pytest
 from starlette.testclient import TestClient
 
-from project.app.WarehouseManagementApp import app
-from project.app.config.AppConfig import Settings
-from project.app.config.AppConfig import get_settings
+from project.app.src.main import app
+from project.app.src.config import Settings
+from project.app.src.config import get_settings
 
 
 def get_settings_override():
