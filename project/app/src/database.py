@@ -5,7 +5,7 @@ from tortoise import Tortoise
 from tortoise import run_async
 from tortoise.contrib.fastapi import register_tortoise
 
-from project.app.config.PostgresConfig import TORTOISE_ORM
+from project.app.src.tortoise import TORTOISE_ORM
 
 
 async def init_db(app: FastAPI) -> None:
