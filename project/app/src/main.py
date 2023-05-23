@@ -1,5 +1,7 @@
 import logging
-from fastapi import FastAPI
+
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 
 from project.app.src.app_status.router import router as app_status_router
 from project.app.src.asset_group.router import router as asset_group_router
@@ -12,9 +14,6 @@ def create_application() -> FastAPI:
 	application = FastAPI(
 		title="Warehouse Management",
 		description="Welcome to Warehouse Management's API documentation!",
-		#root_path="/api/v1",
-		docs_url="/docs",
-		#openapi_url="/docs/openapi.json",
 		redoc_url=None,
 	)
 	application.include_router(app_status_router)
@@ -40,3 +39,11 @@ async def shutdown_event():
 @app.get("/healthcheck", include_in_schema=False)
 async def healthcheck() -> dict[str, str]:
 	return {"status": "ok"}
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
+	return JSONResponse(
+		status_code=exc.status_code,
+		content={"detail": exc.detail},
+	)

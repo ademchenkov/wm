@@ -2,7 +2,10 @@ from fastapi import APIRouter
 
 from project.app.src.config import get_settings
 
-router = APIRouter()
+router = APIRouter(
+	prefix="/app-status",
+	tags=["App Info"],
+)
 settings = get_settings()
 
 
