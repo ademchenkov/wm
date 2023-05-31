@@ -16,7 +16,7 @@ services:
       - ENVIRONMENT=DEV #  DEV, TEST, PROD
       - TESTING=0 #  0 - False, 1 - True
       - DATABASE_URL=postgres://ademchenkov:pass@postgres:5432/wm_postgres_dev        # new
-      - DATABASE_TEST_URL=postgres://ademchenkov:pass@postgres:5432/web_postgres_test  # new
+      - DATABASE_TEST_URL=postgres://ademchenkov:pass@postgres:5432/wm_postgres_test  # new
     depends_on:
       - postgres
     networks:

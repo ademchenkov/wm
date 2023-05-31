@@ -39,15 +39,16 @@ async def get_asset_group(asset_group_id: str):
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=AssetGroupOut)
 async def create_new_asset_group(asset: AssetGroupIn):
-	asset_group = await create(asset)
-	if not asset_group:
+	new_asset_group = await create(asset)
+	if not new_asset_group:
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
 			detail="Asset group cannot be created"
 		)
+	return new_asset_group
 
 
-@router.put("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
+@router.patch("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
 async def update_asset_group_by_id(asset_group_id: str, payload: AssetGroupIn):
 	try:
 		asset_group = await get_by_id(asset_group_id)

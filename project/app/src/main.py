@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 
-from project.app.src.app_status.router import router as app_status_router
+from project.app.src.app_info.router import router as app_info
 from project.app.src.asset_group.router import router as asset_group_router
 from project.app.src.database import init_db
 
@@ -16,7 +16,7 @@ def create_application() -> FastAPI:
 		description="Welcome to Warehouse Management's API documentation!",
 		redoc_url=None,
 	)
-	application.include_router(app_status_router)
+	application.include_router(app_info)
 	application.include_router(asset_group_router)
 
 	return application
