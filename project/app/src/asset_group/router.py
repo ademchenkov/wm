@@ -27,7 +27,7 @@ async def get_asset_groups(
 
 
 @router.get("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
-async def get_asset_group(asset_group_id: str):
+async def get_asset_group_by_id(asset_group_id: str) -> Any:
 	try:
 		return await get_by_id(asset_group_id)
 	except DoesNotExist:
@@ -38,7 +38,7 @@ async def get_asset_group(asset_group_id: str):
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=AssetGroupOut)
-async def create_new_asset_group(asset: AssetGroupIn):
+async def create_new_asset_group(asset: AssetGroupIn) -> Any:
 	new_asset_group = await create(asset)
 	if not new_asset_group:
 		raise HTTPException(
@@ -49,18 +49,18 @@ async def create_new_asset_group(asset: AssetGroupIn):
 
 
 @router.patch("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
-async def update_asset_group_by_id(asset_group_id: str, payload: AssetGroupIn):
+async def update_asset_group_by_id(asset_group_id: str, payload: AssetGroupIn) -> Any:
 	try:
 		asset_group = await get_by_id(asset_group_id)
 	except DoesNotExist:
 		raise HTTPException(
 			status_code=status.HTTP_404_NOT_FOUND,
-			detail=f"Asset group {asset_group_id} not found"
+			detail=f"Asset group: {asset_group_id} not found"
 		)
 	if not asset_group.can_be_edited:
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
-			detail=f"Cannot update asset group {asset_group_id}"
+			detail=f"Cannot update asset group: {asset_group_id}"
 		)
 	async with AsyncContextManager():
 		updated_asset_group = await update(asset_group_id, payload)
@@ -68,7 +68,7 @@ async def update_asset_group_by_id(asset_group_id: str, payload: AssetGroupIn):
 
 
 @router.delete("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
-async def delete_asset_group_by_id(asset_group_id: str):
+async def delete_asset_group_by_id(asset_group_id: str) -> Any:
 	try:
 		asset_group = await get_by_id(asset_group_id)
 	except DoesNotExist:

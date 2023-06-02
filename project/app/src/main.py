@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 
 from project.app.src.app_info.router import router as app_info
 from project.app.src.asset_group.router import router as asset_group_router
+from project.app.src.responsible.router import router as responsible_router
 from project.app.src.database import init_db
 
 log = logging.getLogger("uvicorn")
@@ -18,6 +19,7 @@ def create_application() -> FastAPI:
 	)
 	application.include_router(app_info)
 	application.include_router(asset_group_router)
+	application.include_router(responsible_router)
 
 	return application
 

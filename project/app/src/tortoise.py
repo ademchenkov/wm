@@ -7,6 +7,7 @@ TORTOISE_ORM = {
 		"models": {
 			"models": [
 				"project.app.src.asset_group.models",
+				"project.app.src.responsible.models",
 				"aerich.models"],
 			"default_connection": "default",
 		},

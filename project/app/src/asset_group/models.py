@@ -34,7 +34,7 @@ class AssetGroupDb(Model):
 
 	# Создание экземпляра класса со сгенерированным id
 	@staticmethod
-	async def create_with_id(asset_group_type, short_name, full_name):
+	async def create_with_id(asset_group_type: str, short_name: str, full_name: str):
 		test_model = AssetGroupDb(
 			type=asset_group_type,
 			short_name=short_name,

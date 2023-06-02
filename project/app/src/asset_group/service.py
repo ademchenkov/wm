@@ -26,10 +26,11 @@ async def get_by_id(asset_group_id: str) -> AssetGroupOut:
 
 
 async def update(asset_group_id: str, asset_group: AssetGroupIn) -> AssetGroupOut:
-	asset_group_obj = await AssetGroupDb.filter(id=asset_group_id).select_for_update().first()
-	await asset_group_obj.update_from_dict(dict(asset_group))
-	await asset_group_obj.save()
-	return AssetGroupOut(**dict(asset_group_obj))
+	async with AsyncContextManager():
+		asset_group_obj = await AssetGroupDb.filter(id=asset_group_id).select_for_update().first()
+		await asset_group_obj.update_from_dict(dict(asset_group))
+		await asset_group_obj.save()
+		return AssetGroupOut(**dict(asset_group_obj))
 
 
 async def delete(asset_group_id: str) -> AssetGroupOut:
