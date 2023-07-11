@@ -18,7 +18,7 @@ class AssetGroupDb(Model):
 	updated_at = fields.DatetimeField(auto_now=True)
 
 	def __str__(self):
-		return self.short_name
+		return "asset_group_name = " + self.short_name
 
 	# Класс для определения дополнительных настроек модели
 	class Meta:
