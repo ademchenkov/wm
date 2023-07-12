@@ -1,12 +1,10 @@
-from pydantic import BaseModel, UUID4, constr
+from pydantic import BaseModel, validator, constr
 
 
 # Склад
 class Storage(BaseModel):
-	#   ID склада
-	id: UUID4
-	#   Название склада
-	name: constr(max_length=20)
+	#   Название склада (естественный ID)
+	name: constr(max_length=20, to_upper=True, strip_whitespace=True)
 	#   Склад активен - true - можно получать и сдавать предметы со склада
 	is_active: bool
 	#   Склад в архиве - false - отображается пользователю, true - скрыт от пользователя
@@ -16,7 +14,7 @@ class Storage(BaseModel):
 
 
 class StorageIn(BaseModel):
-	name: constr(max_length=20)
+	name: constr(max_length=20, to_upper=True, strip_whitespace=True)
 
 
 class StorageOut(Storage):

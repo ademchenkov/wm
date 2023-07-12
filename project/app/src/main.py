@@ -2,6 +2,7 @@ import logging
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
+from tortoise.exceptions import IntegrityError
 
 from project.app.src.app_info.router import router as app_info
 from project.app.src.asset_group.router import router as asset_group_router
@@ -51,3 +52,11 @@ async def http_exception_handler(request: Request, exc: HTTPException) -> JSONRe
 		status_code=exc.status_code,
 		content={"detail": exc.detail},
 	)
+
+
+# @app.exception_handler(IntegrityError)
+# async def integrity_error_handler(request, exc):
+# 	raise HTTPException(
+# 		status_code=422,
+# 		detail=str(exc)
+# 	)
