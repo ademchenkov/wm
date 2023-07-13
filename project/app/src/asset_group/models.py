@@ -9,8 +9,6 @@ class AssetGroupDb(Model):
 	type = fields.CharField(null=False, max_length=20)
 	short_name = fields.CharField(null=False, unique=True, max_length=30)
 	full_name = fields.CharField(null=False, unique=True, max_length=150)
-	amount_remains_in_storage = fields.FloatField(null=False, default=0)
-	amount_in_use = fields.FloatField(null=False, default=0)
 	is_active = fields.BooleanField(null=False, default=True)
 	is_archived = fields.BooleanField(null=False, default=False)
 	can_be_edited = fields.BooleanField(null=False, default=True)
@@ -39,8 +37,6 @@ class AssetGroupDb(Model):
 			type=asset_group_type,
 			short_name=short_name,
 			full_name=full_name,
-			amount_remains_in_storage=0,
-			amount_in_use=0,
 		)
 		await test_model.generate_id()
 		await test_model.save()
