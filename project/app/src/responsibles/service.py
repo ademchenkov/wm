@@ -1,9 +1,9 @@
 from typing import List
 
 from project.app.src.common.async_context_manager import AsyncContextManager
-from project.app.src.responsible.models import ResponsibleDb
-from project.app.src.responsible.schemas import ResponsibleIn
-from project.app.src.responsible.schemas import ResponsibleOut
+from project.app.src.responsibles.models import ResponsibleDb
+from project.app.src.responsibles.schemas import ResponsibleIn
+from project.app.src.responsibles.schemas import ResponsibleOut
 
 
 async def create(responsible: ResponsibleIn) -> ResponsibleOut:

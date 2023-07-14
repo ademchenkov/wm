@@ -7,6 +7,7 @@ from project.app.src.common.models import TimestampMixin
 
 class StorageDb(MyAbstractBaseModel, ObjectStatusMixin, TimestampMixin):
 	name = fields.CharField(pk=True, null=False, max_length=20)
+	responsible = fields.ForeignKeyField("models.ResponsibleDb")
 
 	def __str__(self):
 		return "storage_name = " + self.name

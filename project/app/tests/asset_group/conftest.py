@@ -6,7 +6,7 @@ from project.app.tests.utils import generate_random_string
 
 
 #
-# asset groups tests
+# assets groups tests
 #
 @pytest.fixture
 def asset_group_in():
@@ -64,5 +64,5 @@ def deleted_asset_group_out():
 
 @pytest.fixture
 def create_new_asset_group(test_app_with_db, asset_group_in):
-	new_asset_group = test_app_with_db.post("/asset-groups/", content=json.dumps(asset_group_in))
+	new_asset_group = test_app_with_db.post("/assets-groups/", content=json.dumps(asset_group_in))
 	return new_asset_group.json()

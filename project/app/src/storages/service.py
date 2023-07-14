@@ -1,9 +1,9 @@
 from typing import List
 
 from project.app.src.common.async_context_manager import AsyncContextManager
-from project.app.src.storage.models import StorageDb
-from project.app.src.storage.schemas import StorageIn
-from project.app.src.storage.schemas import StorageOut
+from project.app.src.storages.models import StorageDb
+from project.app.src.storages.schemas import StorageIn
+from project.app.src.storages.schemas import StorageOut
 
 
 async def create(storage: StorageIn) -> StorageOut:

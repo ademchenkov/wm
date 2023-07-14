@@ -3,12 +3,12 @@ from typing import Any
 from fastapi import APIRouter, HTTPException, status
 from tortoise.exceptions import DoesNotExist
 
-from project.app.src.workplace.service import create
-from project.app.src.workplace.service import delete
-from project.app.src.workplace.service import get_all
-from project.app.src.workplace.service import get_by_id
-from project.app.src.workplace.schemas import WorkplaceIn
-from project.app.src.workplace.schemas import WorkplaceOut
+from project.app.src.workplaces.service import create
+from project.app.src.workplaces.service import delete
+from project.app.src.workplaces.service import get_all
+from project.app.src.workplaces.service import get_by_id
+from project.app.src.workplaces.schemas import WorkplaceIn
+from project.app.src.workplaces.schemas import WorkplaceOut
 from project.app.src.common.async_context_manager import AsyncContextManager
 
 router = APIRouter(
@@ -70,7 +70,7 @@ async def delete_workplace_by_id(workplace_id: str) -> Any:
 	):
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
-			detail=f"Cannot archive workplace {workplace_id}"
+			detail=f"Cannot archive workplaces {workplace_id}"
 		)
 	if workplace.is_archived:
 		raise HTTPException(

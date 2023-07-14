@@ -1,6 +1,6 @@
 from tortoise import fields
 
-from project.app.src.asset.constants import ModelPrefix
+from project.app.src.assets.constants import ModelPrefix
 from project.app.src.common.models import MyAbstractBaseModel
 from project.app.src.common.models import TimestampMixin
 

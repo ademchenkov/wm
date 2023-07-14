@@ -19,4 +19,5 @@ class Storage(StorageIn):
 
 
 class StorageOut(Storage):
-	pass
+	# ID МОЛ cклада
+	responsible_id: str

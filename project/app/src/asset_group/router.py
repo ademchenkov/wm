@@ -13,7 +13,7 @@ from project.app.src.asset_group.schemas import AssetGroupOut
 from project.app.src.common.async_context_manager import AsyncContextManager
 
 router = APIRouter(
-	prefix="/asset-groups",
+	prefix="/assets-groups",
 	tags=["Asset Groups"],
 )
 
@@ -60,7 +60,7 @@ async def update_asset_group_by_id(asset_group_id: str, payload: AssetGroupIn) -
 	if not asset_group.can_be_edited:
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
-			detail=f"Cannot update asset group: {asset_group_id}"
+			detail=f"Cannot update assets group: {asset_group_id}"
 		)
 	async with AsyncContextManager():
 		updated_asset_group = await update(asset_group_id, payload)
@@ -78,12 +78,10 @@ async def delete_asset_group_by_id(asset_group_id: str) -> Any:
 		)
 	if not (
 			asset_group.can_be_edited
-			or asset_group.amount_in_use != 0
-			or asset_group.amount_remains_in_storage != 0
 	):
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
-			detail=f"Cannot archive asset group {asset_group_id}"
+			detail=f"Cannot archive assets group {asset_group_id}"
 		)
 	if asset_group.is_archived:
 		raise HTTPException(

@@ -1,8 +1,8 @@
 from typing import List
 
-from project.app.src.workplace.schemas import WorkplaceIn
-from project.app.src.workplace.schemas import WorkplaceOut
-from project.app.src.workplace.models import WorkplaceDb
+from project.app.src.workplaces.schemas import WorkplaceIn
+from project.app.src.workplaces.schemas import WorkplaceOut
+from project.app.src.workplaces.models import WorkplaceDb
 from project.app.src.common.async_context_manager import AsyncContextManager
 
 

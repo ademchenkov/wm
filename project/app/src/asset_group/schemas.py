@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import BaseModel, confloat, constr
+from pydantic import BaseModel, constr
 
 
 # Номенклатура

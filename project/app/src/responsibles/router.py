@@ -3,13 +3,13 @@ from typing import Any
 from fastapi import APIRouter, status, HTTPException
 from tortoise.exceptions import DoesNotExist
 
-from project.app.src.responsible.schemas import ResponsibleIn
-from project.app.src.responsible.schemas import ResponsibleOut
-from project.app.src.responsible.service import get_all
-from project.app.src.responsible.service import create
-from project.app.src.responsible.service import get_by_id
-from project.app.src.responsible.service import update
-from project.app.src.responsible.service import delete
+from project.app.src.responsibles.schemas import ResponsibleIn
+from project.app.src.responsibles.schemas import ResponsibleOut
+from project.app.src.responsibles.service import get_all
+from project.app.src.responsibles.service import create
+from project.app.src.responsibles.service import get_by_id
+from project.app.src.responsibles.service import update
+from project.app.src.responsibles.service import delete
 from project.app.src.common.async_context_manager import AsyncContextManager
 
 router = APIRouter(
@@ -60,7 +60,7 @@ async def update_responsible_by_id(responsible_id: str, payload: ResponsibleIn) 
 	if not responsible.can_be_edited:
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
-			detail=f"Cannot update responsible: {responsible_id}"
+			detail=f"Cannot update responsibles: {responsible_id}"
 		)
 	async with AsyncContextManager():
 		updated_responsible = await update(responsible_id, payload)
@@ -79,7 +79,7 @@ async def delete_responsible_by_id(responsible_id: str) -> Any:
 	if not responsible.can_be_edited:
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
-			detail=f"Cannot archive responsible: {responsible_id}"
+			detail=f"Cannot archive responsibles: {responsible_id}"
 		)
 	if responsible.is_archived:
 		raise HTTPException(

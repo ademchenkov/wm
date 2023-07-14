@@ -11,6 +11,7 @@ class ResponsibleDb(MyAbstractBaseModel, ObjectStatusMixin, TimestampMixin):
 	surname = fields.CharField(null=False, max_length=20)
 	patronymic = fields.CharField(null=True, max_length=20)
 	employee_id = fields.CharField(null=True, max_length=5)
+	storages = fields.ForeignKeyRelation["models.StorageDb"]
 
 	def __str__(self):
 		return "responsible_id = " + self.employee_id

@@ -3,7 +3,7 @@ from tortoise import fields
 from project.app.src.common.models import MyAbstractBaseModel
 from project.app.src.common.models import ObjectStatusMixin
 from project.app.src.common.models import TimestampMixin
-from project.app.src.workplace.constants import ModelPrefix
+from project.app.src.workplaces.constants import ModelPrefix
 
 
 class WorkplaceDb(MyAbstractBaseModel, ObjectStatusMixin, TimestampMixin):
@@ -14,7 +14,7 @@ class WorkplaceDb(MyAbstractBaseModel, ObjectStatusMixin, TimestampMixin):
 	place = fields.CharField(null=True, max_length=2)
 
 	def __str__(self):
-		return "workplace = " + self.id
+		return "workplaces = " + self.id
 
 	# Класс для определения дополнительных настроек модели
 	class Meta:

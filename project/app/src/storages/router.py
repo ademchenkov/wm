@@ -3,14 +3,14 @@ from typing import Any
 from fastapi import APIRouter, status, HTTPException
 from tortoise.exceptions import DoesNotExist
 
-from project.app.src.storage.models import StorageDb
-from project.app.src.storage.schemas import StorageIn
-from project.app.src.storage.schemas import StorageOut
-from project.app.src.storage.service import get_all
-from project.app.src.storage.service import create
-from project.app.src.storage.service import get_by_name
-from project.app.src.storage.service import update
-from project.app.src.storage.service import delete
+from project.app.src.storages.models import StorageDb
+from project.app.src.storages.schemas import StorageIn
+from project.app.src.storages.schemas import StorageOut
+from project.app.src.storages.service import get_all
+from project.app.src.storages.service import create
+from project.app.src.storages.service import get_by_name
+from project.app.src.storages.service import update
+from project.app.src.storages.service import delete
 from project.app.src.common.async_context_manager import AsyncContextManager
 
 router = APIRouter(
@@ -95,7 +95,7 @@ async def delete_storage_by_name(storage_name: str) -> Any:
 	if not storage.can_be_edited:
 		raise HTTPException(
 			status_code=status.HTTP_400_BAD_REQUEST,
-			detail=f"Cannot archive storage: {storage_name}"
+			detail=f"Cannot archive storages: {storage_name}"
 		)
 	if storage.is_archived:
 		raise HTTPException(

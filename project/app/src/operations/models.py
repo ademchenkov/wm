@@ -13,7 +13,7 @@ class OperationDb(MyAbstractBaseModel, TimestampMixin):
 	author = fields.CharField(null=True, max_length=40)
 
 	def __str__(self):
-		return "operation = " + self.id
+		return "operations = " + self.id
 
 	# Класс для определения дополнительных настроек модели
 	class Meta:
