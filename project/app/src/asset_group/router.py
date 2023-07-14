@@ -26,7 +26,7 @@ async def get_asset_groups(
 	return await get_all(is_active=is_active, is_archived=is_archived)
 
 
-@router.get("/{asset-group-id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
+@router.get("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
 async def get_asset_group_by_id(asset_group_id: str) -> Any:
 	try:
 		return await get_by_id(asset_group_id)
@@ -48,7 +48,7 @@ async def create_new_asset_group(asset: AssetGroupIn) -> Any:
 	return new_asset_group
 
 
-@router.patch("/{asset-group-id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
+@router.patch("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
 async def update_asset_group_by_id(asset_group_id: str, payload: AssetGroupIn) -> Any:
 	try:
 		asset_group = await get_by_id(asset_group_id)
@@ -67,7 +67,7 @@ async def update_asset_group_by_id(asset_group_id: str, payload: AssetGroupIn) -
 	return updated_asset_group
 
 
-@router.delete("/{asset-group-id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
+@router.delete("/{asset_group_id}", status_code=status.HTTP_200_OK, response_model=AssetGroupOut)
 async def delete_asset_group_by_id(asset_group_id: str) -> Any:
 	try:
 		asset_group = await get_by_id(asset_group_id)

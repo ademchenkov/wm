@@ -26,7 +26,7 @@ async def get_responsibles(
 	return await get_all(is_active=is_active, is_archived=is_archived)
 
 
-@router.get("/{responsible-id}", status_code=status.HTTP_200_OK, response_model=ResponsibleOut)
+@router.get("/{responsible_id}", status_code=status.HTTP_200_OK, response_model=ResponsibleOut)
 async def get_responsible_by_id(responsible_id: str) -> Any:
 	try:
 		return await get_by_id(responsible_id)
@@ -48,7 +48,7 @@ async def create_responsible(responsible: ResponsibleIn) -> Any:
 	return new_responsible
 
 
-@router.patch("/{responsible-id}", status_code=status.HTTP_200_OK, response_model=ResponsibleOut)
+@router.patch("/{responsible_id}", status_code=status.HTTP_200_OK, response_model=ResponsibleOut)
 async def update_responsible_by_id(responsible_id: str, payload: ResponsibleIn) -> Any:
 	try:
 		responsible = await get_by_id(responsible_id)
@@ -67,7 +67,7 @@ async def update_responsible_by_id(responsible_id: str, payload: ResponsibleIn) 
 	return updated_responsible
 
 
-@router.delete("/{responsible-id}", status_code=status.HTTP_200_OK, response_model=ResponsibleOut)
+@router.delete("/{responsible_id}", status_code=status.HTTP_200_OK, response_model=ResponsibleOut)
 async def delete_responsible_by_id(responsible_id: str) -> Any:
 	try:
 		responsible = await get_by_id(responsible_id)

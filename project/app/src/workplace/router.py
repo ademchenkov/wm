@@ -34,7 +34,7 @@ async def get_workplaces(
 	)
 
 
-@router.get("/{workplace-id}", status_code=status.HTTP_200_OK, response_model=WorkplaceOut)
+@router.get("/{workplace_id}", status_code=status.HTTP_200_OK, response_model=WorkplaceOut)
 async def get_workplace_by_id(workplace_id: str) -> Any:
 	try:
 		return await get_by_id(workplace_id)
@@ -56,7 +56,7 @@ async def create_new_workplace(workplace: WorkplaceIn) -> Any:
 	return new_workplace
 
 
-@router.delete("/{workplace-id}", status_code=status.HTTP_200_OK, response_model=WorkplaceOut)
+@router.delete("/{workplace_id}", status_code=status.HTTP_200_OK, response_model=WorkplaceOut)
 async def delete_workplace_by_id(workplace_id: str) -> Any:
 	try:
 		workplace = await get_by_id(workplace_id)

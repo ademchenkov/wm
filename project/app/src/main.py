@@ -8,6 +8,7 @@ from project.app.src.asset_group.router import router as asset_group_router
 from project.app.src.responsible.router import router as responsible_router
 from project.app.src.storage.router import router as storage_router
 from project.app.src.workplace.router import router as workplace_router
+from project.app.src.warehouse_services.router import router as warehouse_service_router
 from project.app.src.database import init_db
 
 log = logging.getLogger("uvicorn")
@@ -24,6 +25,7 @@ def create_application() -> FastAPI:
 	application.include_router(responsible_router)
 	application.include_router(storage_router)
 	application.include_router(workplace_router)
+	application.include_router(warehouse_service_router)
 
 	return application
 

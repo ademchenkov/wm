@@ -1,19 +1,16 @@
-from tortoise.models import Model
 from tortoise import fields
 
 from project.app.src.asset_group.constants import ModelPrefix
+from project.app.src.common.models import MyAbstractBaseModel
+from project.app.src.common.models import ObjectStatusMixin
+from project.app.src.common.models import TimestampMixin
 
 
-class AssetGroupDb(Model):
+class AssetGroupDb(MyAbstractBaseModel, TimestampMixin, ObjectStatusMixin):
 	id = fields.CharField(pk=True, max_length=10)
 	type = fields.CharField(null=False, max_length=20)
 	short_name = fields.CharField(null=False, unique=True, max_length=30)
 	full_name = fields.CharField(null=False, unique=True, max_length=150)
-	is_active = fields.BooleanField(null=False, default=True)
-	is_archived = fields.BooleanField(null=False, default=False)
-	can_be_edited = fields.BooleanField(null=False, default=True)
-	created_at = fields.DatetimeField(null=False, auto_now_add=True)
-	updated_at = fields.DatetimeField(auto_now=True)
 
 	def __str__(self):
 		return "asset_group_name = " + self.short_name

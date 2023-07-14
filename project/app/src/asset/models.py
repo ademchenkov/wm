@@ -1,14 +1,16 @@
-from tortoise import Model
 from tortoise import fields
 
 from project.app.src.asset.constants import ModelPrefix
+from project.app.src.common.models import MyAbstractBaseModel
+from project.app.src.common.models import TimestampMixin
 
 
-class AssetDb(Model):
+class AssetDb(MyAbstractBaseModel, TimestampMixin):
 	id = fields.CharField(pk=True, max_length=9)
 	asset_group_id = fields.ForeignKeyField(
 		model_name="models.AssetGroupDb",
 		related_name="assets",
+		backward_key="asset_group_id",
 	)
 	amount_total = fields.FloatField(null=False, default=0)
 	amount_in_storage = fields.FloatField(null=False, default=0)

@@ -19,10 +19,6 @@ class AssetGroup(AssetGroupIn):
 	#   ID номенклатуры
 	id: constr(max_length=10)
 	#   Количество на складе
-	amount_remains_in_storage: confloat(ge=0)
-	#   Количество в использовании
-	amount_in_use: confloat(ge=0)
-	#   Номенклатура активна - true - можно создавать позиции, false - нельзя создавать позиции
 	is_active: bool
 	#   Номенклатура в архиве - false - отображается пользователю, true - скрыта от пользователя
 	is_archived: bool

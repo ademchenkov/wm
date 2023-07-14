@@ -1,6 +1,5 @@
 from typing import Any
 
-import tortoise.exceptions
 from fastapi import APIRouter, status, HTTPException
 from tortoise.exceptions import DoesNotExist
 
@@ -28,7 +27,7 @@ async def get_storages(
 	return await get_all(is_active=is_active, is_archived=is_archived)
 
 
-@router.get("/{storage-name}", status_code=status.HTTP_200_OK, response_model=StorageOut)
+@router.get("/{storage_name}", status_code=status.HTTP_200_OK, response_model=StorageOut)
 async def get_storage_by_name(storage_name: str) -> Any:
 	try:
 		return await get_by_name(storage_name)
@@ -58,7 +57,7 @@ async def create_storage(storage: StorageIn) -> Any:
 	return new_storage
 
 
-@router.patch("/{storage-name}", status_code=status.HTTP_200_OK, response_model=StorageOut)
+@router.patch("/{storage_name}", status_code=status.HTTP_200_OK, response_model=StorageOut)
 async def update_storage_by_name(storage_name: str, payload: StorageIn) -> Any:
 	try:
 		storage = await get_by_name(storage_name)
@@ -84,7 +83,7 @@ async def update_storage_by_name(storage_name: str, payload: StorageIn) -> Any:
 	return updated_storage
 
 
-@router.delete("/{storage-name}", status_code=status.HTTP_200_OK, response_model=StorageOut)
+@router.delete("/{storage_name}", status_code=status.HTTP_200_OK, response_model=StorageOut)
 async def delete_storage_by_name(storage_name: str) -> Any:
 	try:
 		storage = await get_by_name(storage_name)

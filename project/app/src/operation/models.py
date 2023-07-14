@@ -1,16 +1,16 @@
-from tortoise.models import Model
 from tortoise import fields
 
+from project.app.src.common.models import MyAbstractBaseModel
+from project.app.src.common.models import TimestampMixin
 
-class OperationDb(Model):
+
+class OperationDb(MyAbstractBaseModel, TimestampMixin):
 	id = fields.UUIDField(pk=True)
 	type = fields.CharField(null=False, max_length=40)
 	state = fields.CharField(null=False, max_length=20)
 	is_reverse = fields.BooleanField(null=False)
 	reversed_operation_id = fields.CharField(max_length=20)
 	author = fields.CharField(null=True, max_length=40)
-	created_at = fields.DatetimeField(null=False, auto_now_add=True)
-	updated_at = fields.DatetimeField(auto_now=True)
 
 	def __str__(self):
 		return "operation = " + self.id
