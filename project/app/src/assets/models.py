@@ -1,22 +1,23 @@
 from tortoise import fields
 
+from project.app.src.asset_group.models import AssetGroupDb
 from project.app.src.assets.constants import ModelPrefix
 from project.app.src.common.models import MyAbstractBaseModel
 from project.app.src.common.models import TimestampMixin
 
 
 class AssetDb(MyAbstractBaseModel, TimestampMixin):
-	id = fields.CharField(pk=True, max_length=9)
-	asset_group_id = fields.ForeignKeyField(
+	id: str = fields.CharField(pk=True, max_length=9)
+	asset_group_id: fields.ForeignKeyRelation["AssetGroupDb"] = fields.ForeignKeyField(
 		model_name="models.AssetGroupDb",
 		related_name="assets",
 		backward_key="asset_group_id",
 	)
-	amount_total = fields.FloatField(null=False, default=0)
-	amount_in_storage = fields.FloatField(null=False, default=0)
-	amount_in_workplace = fields.FloatField(null=False, default=0)
-	amount_written_off = fields.FloatField(null=False, default=0)
-	state = fields.CharField(null=False, max_length=20)
+	amount_total: float = fields.FloatField(null=False, default=0)
+	amount_in_storage: float = fields.FloatField(null=False, default=0)
+	amount_in_workplace: float = fields.FloatField(null=False, default=0)
+	amount_written_off: float = fields.FloatField(null=False, default=0)
+	state: str = fields.CharField(null=False, max_length=20)
 
 	def __str__(self):
 		return "asset_id = " + self.id

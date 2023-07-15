@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from tortoise import fields
 from tortoise.models import Model
 
@@ -10,11 +12,11 @@ class MyAbstractBaseModel(Model):
 
 
 class TimestampMixin:
-	created_at = fields.DatetimeField(null=False, auto_now_add=True)
-	updated_at = fields.DatetimeField(auto_now=True)
+	created_at: datetime = fields.DatetimeField(null=False, auto_now_add=True)
+	updated_at: datetime = fields.DatetimeField(auto_now=True)
 
 
 class ObjectStatusMixin:
-	is_active = fields.BooleanField(null=False, default=True)
-	is_archived = fields.BooleanField(null=False, default=False)
-	can_be_edited = fields.BooleanField(null=False, default=True)
+	is_active: bool = fields.BooleanField(null=False, default=True)
+	is_archived: bool = fields.BooleanField(null=False, default=False)
+	can_be_edited: bool = fields.BooleanField(null=False, default=True)

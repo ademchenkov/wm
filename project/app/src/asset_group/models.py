@@ -7,10 +7,10 @@ from project.app.src.common.models import TimestampMixin
 
 
 class AssetGroupDb(MyAbstractBaseModel, TimestampMixin, ObjectStatusMixin):
-	id = fields.CharField(pk=True, max_length=10)
-	type = fields.CharField(null=False, max_length=20)
-	short_name = fields.CharField(null=False, unique=True, max_length=30)
-	full_name = fields.CharField(null=False, unique=True, max_length=150)
+	id: str = fields.CharField(pk=True, max_length=10)
+	type: str = fields.CharField(null=False, max_length=20)
+	short_name: str = fields.CharField(null=False, unique=True, max_length=30)
+	full_name: str = fields.CharField(null=False, unique=True, max_length=150)
 
 	def __str__(self):
 		return "asset_group_name = " + self.short_name

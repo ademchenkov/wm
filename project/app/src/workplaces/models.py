@@ -7,11 +7,11 @@ from project.app.src.workplaces.constants import ModelPrefix
 
 
 class WorkplaceDb(MyAbstractBaseModel, ObjectStatusMixin, TimestampMixin):
-	id = fields.CharField(pk=True, max_length=40)
-	building = fields.CharField(null=False, max_length=20)
-	floor = fields.CharField(null=False, max_length=2)
-	room = fields.CharField(null=False, max_length=5)
-	place = fields.CharField(null=True, max_length=2)
+	id: str = fields.CharField(pk=True, max_length=40)
+	building: str = fields.CharField(null=False, max_length=20)
+	floor: str = fields.CharField(null=False, max_length=2)
+	room: str = fields.CharField(null=False, max_length=5)
+	place: str = fields.CharField(null=True, max_length=2)
 
 	def __str__(self):
 		return "workplaces = " + self.id

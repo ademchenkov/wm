@@ -6,12 +6,12 @@ from project.app.src.common.models import TimestampMixin
 
 
 class ResponsibleDb(MyAbstractBaseModel, ObjectStatusMixin, TimestampMixin):
-	id = fields.UUIDField(pk=True)
-	name = fields.CharField(null=False, max_length=20)
-	surname = fields.CharField(null=False, max_length=20)
-	patronymic = fields.CharField(null=True, max_length=20)
-	employee_id = fields.CharField(null=True, max_length=5)
-	storages = fields.ForeignKeyRelation["models.StorageDb"]
+	id: str = fields.UUIDField(pk=True)
+	name: str = fields.CharField(null=False, max_length=20)
+	surname: str = fields.CharField(null=False, max_length=20)
+	patronymic: str = fields.CharField(null=True, max_length=20)
+	employee_id: str = fields.CharField(null=True, max_length=5)
+	storage_name: fields.ReverseRelation["StorageDb"]
 
 	def __str__(self):
 		return "responsible_id = " + self.employee_id
