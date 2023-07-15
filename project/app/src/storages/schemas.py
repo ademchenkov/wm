@@ -2,8 +2,6 @@ from pydantic import BaseModel, constr
 
 
 # Склад
-
-
 class StorageIn(BaseModel):
 	#   Название склада (естественный ID)
 	name: constr(max_length=20, to_upper=True, strip_whitespace=True)
@@ -20,4 +18,4 @@ class Storage(StorageIn):
 
 class StorageOut(Storage):
 	# ID МОЛ cклада
-	responsible_id: str
+	responsible_id: str | None

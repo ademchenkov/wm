@@ -8,10 +8,9 @@ from project.app.src.common.models import TimestampMixin
 
 class AssetDb(MyAbstractBaseModel, TimestampMixin):
 	id: str = fields.CharField(pk=True, max_length=9)
-	asset_group_id: fields.ForeignKeyRelation["AssetGroupDb"] = fields.ForeignKeyField(
+	asset_group: fields.ForeignKeyRelation["AssetGroupDb"] = fields.ForeignKeyField(
 		model_name="models.AssetGroupDb",
 		related_name="assets",
-		backward_key="asset_group_id",
 	)
 	amount_total: float = fields.FloatField(null=False, default=0)
 	amount_in_storage: float = fields.FloatField(null=False, default=0)

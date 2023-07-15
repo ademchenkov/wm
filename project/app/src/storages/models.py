@@ -8,8 +8,11 @@ from project.app.src.responsibles.models import ResponsibleDb
 
 class StorageDb(MyAbstractBaseModel, ObjectStatusMixin, TimestampMixin):
 	name: str = fields.CharField(pk=True, null=False, max_length=20)
-	responsible_id: fields.ForeignKeyNullableRelation["ResponsibleDb"] = fields.ForeignKeyField(
-		"models.ResponsibleDb", related_name="storages", null=True, on_delete=fields.SET_NULL
+	responsible: fields.ForeignKeyNullableRelation["ResponsibleDb"] = fields.ForeignKeyField(
+		"models.ResponsibleDb",
+		related_name="storages",
+		null=True,
+		on_delete=fields.SET_NULL,
 	)
 
 	def __str__(self):

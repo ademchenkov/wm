@@ -19,9 +19,14 @@ router = APIRouter(
 	response_model=StorageOut,
 )
 async def define_responsible(storage_name: str, responsible_id: str) -> Any:
-	existing_storage = await StorageDb.get_or_none(storage_name=storage_name)
-	existing_responsible = await ResponsibleDb.get_or_none(responsible_id=responsible_id)
-	if not existing_storage or existing_responsible:
+	existing_storage = await StorageDb.get_or_none(name=storage_name)
+	if not existing_storage:
+		raise HTTPException(
+			status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+			detail="Couldn't define responsible. Check if storage and responsible exists"
+		)
+	existing_responsible = await ResponsibleDb.get_or_none(id=responsible_id)
+	if not existing_responsible:
 		raise HTTPException(
 			status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
 			detail="Couldn't define responsible. Check if storage and responsible exists"

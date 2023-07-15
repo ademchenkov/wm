@@ -40,6 +40,12 @@ async def get_storage_by_name(storage_name: str) -> Any:
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=StorageOut)
 async def create_storage(storage: StorageIn) -> Any:
+	# Проверка на пустое имя
+	if storage.name == "":
+		raise HTTPException(
+			status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+			detail="Storage name can't be empty"
+		)
 	# проверка на наличие записи с таким же первичным естественным ключом
 	existing_storage = await StorageDb.get_or_none(name=storage.name)
 	if existing_storage:
