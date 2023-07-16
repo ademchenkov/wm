@@ -1,10 +1,13 @@
 from typing import Literal
 
-from pydantic import BaseModel, constr
+from pydantic import constr
+
+from project.app.src.common.schemas import MyAbstractPydanticModel
+from project.app.src.common.schemas import ObjectStatusPydanticMixin
 
 
 # Рабочее место
-class WorkplaceIn(BaseModel):
+class WorkplaceIn(MyAbstractPydanticModel):
 	# Наименование строения
 	building: Literal["MAIN", "TEMP"]
 	# Номер этажа
@@ -15,15 +18,9 @@ class WorkplaceIn(BaseModel):
 	place: constr(max_length=2)
 
 
-class Workplace(WorkplaceIn):
+class Workplace(WorkplaceIn, ObjectStatusPydanticMixin):
 	#   ID рабочего места
 	id: constr(max_length=40)
-	#   Рабочее место активно - true - можно создавать позиции, false - нельзя создавать позиции
-	is_active: bool
-	#   Рабочее место в архиве - false - отображается пользователю, true - скрыта от пользователя
-	is_archived: bool
-	#   Рабочее место может быть отредактировано (если еще не использовался)
-	can_be_edited: bool
 
 
 class WorkplaceOut(Workplace):

@@ -1,12 +1,15 @@
 from typing import Literal
 
-from pydantic import BaseModel, constr
+from pydantic import constr
+
+from project.app.src.common.schemas import MyAbstractPydanticModel
+from project.app.src.common.schemas import ObjectStatusPydanticMixin
 
 
 # Номенклатура
 
 
-class AssetGroupIn(BaseModel):
+class AssetGroupIn(MyAbstractPydanticModel):
 	#   Тип номенклатуры
 	type: Literal["FIXED_ASSET", "LONG_TERM_MATERIAL", "SHORT_TERM_MATERIAL"]
 	#   Короткое имя номенклатуры
@@ -15,15 +18,9 @@ class AssetGroupIn(BaseModel):
 	full_name: constr(max_length=150, to_upper=True, strip_whitespace=True)
 
 
-class AssetGroup(AssetGroupIn):
+class AssetGroup(AssetGroupIn, ObjectStatusPydanticMixin):
 	#   ID номенклатуры
 	id: constr(max_length=10)
-	#   Количество на складе
-	is_active: bool
-	#   Номенклатура в архиве - false - отображается пользователю, true - скрыта от пользователя
-	is_archived: bool
-	#   Может быть отредактирован (если еще не использовался)
-	can_be_edited: bool
 
 
 class AssetGroupOut(AssetGroup):

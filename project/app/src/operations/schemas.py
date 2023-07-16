@@ -1,6 +1,8 @@
 from typing import Literal
 
-from pydantic import BaseModel, UUID4, constr
+from pydantic import UUID4, constr
+
+from project.app.src.common.schemas import MyAbstractPydanticModel
 
 
 # Операция
@@ -23,7 +25,7 @@ from pydantic import BaseModel, UUID4, constr
 # COMPLETED
 # REVERSED
 
-class OperationIn(BaseModel):
+class OperationIn(MyAbstractPydanticModel):
 	#   Тип номенклатуры
 	type: Literal[
 		"ARRIVAL_TO_STORAGE",

@@ -1,10 +1,13 @@
-from pydantic import BaseModel, UUID4, constr
+from pydantic import UUID4, constr
+
+from project.app.src.common.schemas import MyAbstractPydanticModel
+from project.app.src.common.schemas import ObjectStatusPydanticMixin
 
 
 # Материально-ответственный сотрудник (МОЛ)
 
 
-class ResponsibleIn(BaseModel):
+class ResponsibleIn(MyAbstractPydanticModel):
 	#   Имя
 	name: constr(max_length=20)
 	#   Фамилия
@@ -15,15 +18,9 @@ class ResponsibleIn(BaseModel):
 	employee_id: constr(max_length=5)
 
 
-class Responsible(ResponsibleIn):
+class Responsible(ResponsibleIn, ObjectStatusPydanticMixin):
 	#   ID МОЛ
 	id: UUID4
-	#   МОЛ активен - true - он может получать и сдавать предметы со склада
-	is_active: bool
-	#   МОЛ в архиве - false - отображается пользователю, true - скрыт от пользователя
-	is_archived: bool
-	#   Может быть отредактирован (если еще не использовался)
-	can_be_edited: bool
 
 
 class ResponsibleOut(Responsible):
