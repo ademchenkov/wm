@@ -1,3 +1,4 @@
+from pydantic import UUID4
 from pydantic import constr
 
 from project.app.src.common.schemas import MyAbstractPydanticModel
@@ -12,7 +13,7 @@ class StorageIn(MyAbstractPydanticModel):
 
 class Storage(StorageIn, ObjectStatusPydanticMixin):
 	# ID МОЛ cклада
-	responsible_id: str | None
+	responsible_id: UUID4 | None
 
 
 class StorageOut(Storage):

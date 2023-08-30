@@ -12,6 +12,7 @@ TORTOISE_ORM = {
 				"project.app.src.workplaces.models",
 				"project.app.src.operations.models",
 				"project.app.src.assets.models",
+				"project.app.src.suppliers.models",
 				"aerich.models"],
 			"default_connection": "default",
 		},

@@ -10,6 +10,7 @@ from project.app.src.storages.router import router as storages_router
 from project.app.src.workplaces.router import router as workplaces_router
 from project.app.src.main_services.router import router as main_services_router
 from project.app.src.storage_services.router import router as storage_services_router
+from project.app.src.suppliers.router import router as suppliers_router
 from project.app.src.database import init_db
 
 log = logging.getLogger("uvicorn")
@@ -28,6 +29,7 @@ def create_application() -> FastAPI:
 	application.include_router(workplaces_router)
 	application.include_router(main_services_router)
 	application.include_router(storage_services_router)
+	application.include_router(suppliers_router)
 
 	return application
 
